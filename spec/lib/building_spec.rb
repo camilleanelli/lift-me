@@ -29,6 +29,10 @@ RSpec.describe Building do
         result = building.call_lift(5)
         expect(result).to eq 'my_ref'
       end
+
+      it 'raises an error if response is not valid' do
+        expect { building.call_lift('toto') }.to raise_error InvalidFloor
+      end
     end
 
     describe '#calculate_distance' do
