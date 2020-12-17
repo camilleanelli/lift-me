@@ -20,18 +20,16 @@ class Building
   end
 
   def calculate_distance(floor, lift)
-    return 0 if lift.current_floor && lift.target.nil?
+    return 0 if lift.current_floor == floor && (lift.target.nil?)
     #on prend l'etage ou il est appelé
     user_floor = floor.to_i
-    # on verifie si l'ascenseur a une target
     if lift.target
-      # on calcule la distance entre le current_floor et le target
       distance_to_target = lift.current_floor - lift.target
-      # puis on calule la distance entre le  target et le floor
       distance_to_floor = user_floor - lift.target
+
       (distance_to_floor + distance_to_target).abs
     else
-      (floor - current_floor).abs
+      (floor - lift.current_floor).abs
     end
   end
 end
